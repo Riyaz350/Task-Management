@@ -1,0 +1,9 @@
+.btnTask {
+    background-color: #ed6a5a;
+    border-radius: 50px;
+    color: white
+  }
+  .btnTask:hover {
+    color: #ed6a5a;
+    background-color: white;
+  }
