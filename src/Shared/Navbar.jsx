@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
   const [userName, setUserName] =useState('')
   const { user, logOut} =useContext(AuthContext)
   const navigate = useNavigate()
-  console.log(user)
 
   // NavLink classes
   const active = 'btn font-bold bg-[#001524] border-2 lg:w-auto w-full border-[#ffecd1] text-[#ffecd1] rounded-lg hover:bg-[#001524] hover:text-[#ffecd1] hover:border-[#ffecd1]'

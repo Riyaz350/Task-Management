@@ -12,11 +12,16 @@ import AuthProvider from './Authentication/AuthProvider.jsx';
 import SignIn from './Authentication/SignIn.jsx';
 import Register from './Authentication/Register.jsx';
 import PrivateRoutes from './Routes/PrivateRoutes.jsx';
+import LandingPage from './Layout/Home/LandingPage/LandingPage.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
     children: [
+      {
+        path: "/",
+        element: <LandingPage></LandingPage>
+      },
       {
         path: "/signIn",
         element: <SignIn></SignIn>
