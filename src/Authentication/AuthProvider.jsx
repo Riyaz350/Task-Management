@@ -2,11 +2,13 @@ import { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../../firebase.config'
 import axios from 'axios';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
     const [loading, setLoading] =useState(true)
     const [user, setUser] =useState(null)
+    const axiosPublic = useAxiosPublic()
 
 
     const createUser = ( email, password) =>{
@@ -34,6 +36,12 @@ const AuthProvider = ({children}) => {
             const userEmail = currentUser?.email || user?.email 
             const loggedUser = {email: userEmail}
             setUser(currentUser)
+            const userInfo = {email:currentUser.email, name:currentUser.displayName, photo:currentUser.photoURL,  role:'user'}
+            console.log(userInfo)
+            axiosPublic.post('/users', userInfo )
+            .then()
+            .catch(err=> console.log(err))
+            
             setLoading(false)
             // if(currentUser){
             //     axios.post('https://assignment-server-sand.vercel.app/jwt', loggedUser, {withCredentials: true})
