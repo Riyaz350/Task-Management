@@ -6,6 +6,8 @@ import { AuthContext } from "./AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import '../App.css'
 import { FaGoogle } from "react-icons/fa";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import axios from "axios";
 
 
 
@@ -14,8 +16,11 @@ const Register = () => {
     const [photo, setPhoto] =useState('')
     const [email, setEmail] =useState("")
     const [password, setPassword] = useState("")
+    const [occupation, setOccupation] = useState("")
+    const job = occupation.toLowerCase()
     const navigate = useNavigate()
     const provider = new GoogleAuthProvider();
+    const axiosPublic = useAxiosPublic()
 
 
 const {createUser, logOut, signInPop} =useContext(AuthContext)
@@ -37,20 +42,24 @@ const handleEmailRegister = e=>{
     }else{
         createUser( email, password)
     .then(()=>{
-        e.target.reset()
         Swal.fire({position: "top-end", icon: "success", title: "Please Sign In again", showConfirmButton: false, timer: 1500});
-
-        // const userInfo = {email:email, name:name, photo:photo,  role:'user', owned: '', acceptedAgreement:''}
-        // axios.post('/users', userInfo )
-        // .then()
-        
-        logOut()
-        .then(result=>console.log(result))
-        .catch(error => console.log(error.message))
         
         updateProfile(auth.currentUser, { displayName: name, photoURL:photo }).catch(
             (err) => console.log(err))
-            navigate('/login')
+            
+            
+            const userInfo = {email:email, name:name, photo:photo,  role:'user', job}
+            console.log(userInfo)
+            axiosPublic.post('/users', userInfo )
+            .then()
+            .catch(err=> console.log(err))
+            
+            logOut()
+            .then(()=>console.log('logged out'))
+            .catch(error => console.log(error.message))
+            
+            navigate('/signIn')
+            e.target.reset()
         
     })
     .catch(e =>{
@@ -80,7 +89,7 @@ const handleGoogleSignIn = () =>{
                 <h1 className="text-3xl mb-10 lg:text-5xl font-bold ">Register </h1>
                 </div>
                 <div className="bg-white p-10 rounded-xl">
-                <form onSubmit={handleEmailRegister} className="bg-white">
+                <div  className="bg-white">
 
                     <div className="form-control">
                     <label className="label">
@@ -111,19 +120,27 @@ const handleGoogleSignIn = () =>{
                     </label>
                     <input onChange={e=> setPassword(e.target.value)} type="password" placeholder="password" className="input input-bordered border-[#0d3454]" required />
                     <div>
+
+
+                    <div className="form-control">
+                    <label className="label">
+                        <span className="text-black">Occupation</span>
+                    </label>
+                    <input onChange={e=> setOccupation(e.target.value)} type="text" placeholder="Your Occupation" className="input input-bordered border-[#0d3454]" required />
+                    </div>
                     </div>
 
-                    <label className="label">
+                    {/* <label className="label">
                         <a href="#" className= "text-black label-text-alt text-base link link-hover">Forgot password?</a>
-                    </label>
+                    </label> */}
                     </div>
 
 
                     <div className="form-control mt-4">
-                    <button className="btn btnTask">Register</button>
+                    <button onClick={handleEmailRegister} className="btn btnTask">Register</button>
                     </div>
 
-                </form>
+                </div>
                     <div className="form-control mt-4">
                     <button onClick={handleGoogleSignIn} className="btn btnTask"><FaGoogle /> Sign Up with Google</button>
                     </div>

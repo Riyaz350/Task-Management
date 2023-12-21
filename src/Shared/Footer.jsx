@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
         <div>
-            <footer className="footer p-10 justify-center items-center bg-neutral text-neutral-content">
+            <footer className="footer p-10 justify-center items-center bg-[#001524] font-semibold text-[#ffecd1]">
                 <aside>
                 <img className="overflow-hidden w-1/3 m-0 p-0 lg:w-1/12" src="https://i.ibb.co/87MKh51/taskforge-high-resolution-logo-transparent.png" alt="" />
                     <p>ACME Industries Ltd.<br/>Providing reliable tech since 1992</p>
