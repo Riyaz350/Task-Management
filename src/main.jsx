@@ -9,16 +9,22 @@ import Home from './Layout/Home/Home.jsx';
 import Dashboard from './Layout/Dashboard/Dashboard.jsx';
 import CreateTask from './Layout/Dashboard/Tasks/CreateTask.jsx';
 import AuthProvider from './Authentication/AuthProvider.jsx';
+import SignIn from './Authentication/SignIn.jsx';
+import Register from './Authentication/Register.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-    // children: [
-    //   {
-    //     path: "contacts/:contactId",
-    //     // element: <Contact />,
-    //   },
-    // ],
+    children: [
+      {
+        path: "/signIn",
+        element: <SignIn></SignIn>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
+      },
+    ],
   },
   {
     path:'/dashboard',
