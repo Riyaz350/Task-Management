@@ -11,6 +11,7 @@ import CreateTask from './Layout/Dashboard/Tasks/CreateTask.jsx';
 import AuthProvider from './Authentication/AuthProvider.jsx';
 import SignIn from './Authentication/SignIn.jsx';
 import Register from './Authentication/Register.jsx';
+import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "createTask",
-        element: <CreateTask></CreateTask>
+        element: <PrivateRoutes><CreateTask></CreateTask></PrivateRoutes>
       },
     ],
   }

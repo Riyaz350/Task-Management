@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion"
 import { AuthContext } from "../Authentication/AuthProvider";
 import Swal from "sweetalert2";
@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
   const [photo, setPhoto] =useState('')
   const [userName, setUserName] =useState('')
   const { user, logOut} =useContext(AuthContext)
+  const navigate = useNavigate()
 
   // NavLink classes
   const active = 'btn font-bold bg-[#001524] border-2 lg:w-auto w-full border-[#ffecd1] text-[#ffecd1] rounded-lg hover:bg-[#001524] hover:text-[#ffecd1] hover:border-[#ffecd1]'
@@ -23,7 +24,10 @@ import Swal from "sweetalert2";
   const handleLogOut = e =>{
     e.preventDefault()
     logOut()
-    .then(()=>{Swal.fire({position: "top-end",icon: "success", title: "Logged Out", showConfirmButton: false, timer: 1500 });})
+    .then(()=>{
+      Swal.fire({position: "top-end",icon: "success", title: "Logged Out", showConfirmButton: false, timer: 1500 });
+      navigate('/')
+    })
     .catch(()=>{console.log("error")})
   }
 
@@ -43,14 +47,14 @@ import Swal from "sweetalert2";
   const navLinks = < div className=" lg:flex items-center gap-6 space-y-1">
       <NavLink className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? active : inActive} to="/">Home</NavLink>
       <NavLink className={({ isActive, isPending }) =>isPending ? "pending" : isActive ? active : inActive} to="/assignments">Users</NavLink>
-      {/* {user? <>
-      <NavLink className={({ isActive, isPending }) =>isPending ? "pending" : isActive ? active : inActive} to="/createAssignments">Create Assignments</NavLink>
-      <NavLink className={({ isActive, isPending }) =>isPending ? "pending" : isActive ? active : inActive} to="/myAssignments">My Assignments</NavLink>
-      <NavLink className={({ isActive, isPending }) =>isPending ? "pending" : isActive ? active : inActive} to="/submittedAssignments">Submitted Assignments</NavLink>
+      {user? <>
+      <NavLink className={({ isActive, isPending }) =>isPending ? "pending" : isActive ? active : inActive} to="/dashboard">Dashboard</NavLink>
+      {/* <NavLink className={({ isActive, isPending }) =>isPending ? "pending" : isActive ? active : inActive} to="/myAssignments">My Assignments</NavLink> */}
+      {/* <NavLink className={({ isActive, isPending }) =>isPending ? "pending" : isActive ? active : inActive} to="/submittedAssignments">Submitted Assignments</NavLink> */}
       </>: 
       <></>
 
-        } */}
+        }
        </div>
       
 

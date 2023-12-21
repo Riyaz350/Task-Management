@@ -4,11 +4,13 @@ import Footer from "../../Shared/Footer";
 
 const Home = () => {
     return (
-        <div>
+        <div >
             <Navbar></Navbar>
-
+            <div className="min-h-screen">
+                
             <Outlet></Outlet>
 
+            </div>
             <Footer></Footer>
         </div>
     );

@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import '../App.css'
 import { FaGoogle } from "react-icons/fa";
 
@@ -68,7 +67,6 @@ const handleGoogleSignIn = () =>{
     .then(()=>{
         Swal.fire({position: "top-end", icon: "error", title: "Google sign up successful", showConfirmButton: false, timer: 1500});
         navigate(location?.state? location.state :'/')
-
     }).catch(()=>{
     })
 }
