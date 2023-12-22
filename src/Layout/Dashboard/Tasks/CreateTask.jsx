@@ -18,7 +18,6 @@ const CreateTask = () => {
 
     const {user} =useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
-    const navigate = useNavigate()
     const [startDate, setStartDate] = useState(new Date());
     const [difficultyValue, setDifficultyValue] = useState('easy')
     const day = startDate.getDate()
