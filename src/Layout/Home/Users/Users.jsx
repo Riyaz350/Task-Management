@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import UserCard from "./UserCard";
+import useUserData from "../../../Hooks/useUserData";
 
 const Users = () => {
 
-  const [users, setUser] = useState([])
+  const [usersData, userLoading] = useUserData()
 
-  const axiosPublic = useAxiosPublic()
-  useEffect(()=>{
-    const allUsers = axiosPublic.get('/users')
-    .then(res=>setUser(res.data))
-  },[axiosPublic])
     return (
-        <div className="grid grid-cols-4">
+        <div>
+          {userLoading && <p>Loading...</p>}
+          <div className="grid grid-cols-4">
           {
-            users.map(user=><UserCard key={user._id} user={user}></UserCard>)
+            usersData.map(user=><UserCard key={user._id} user={user}></UserCard>)
           }
+        </div>
         </div>
     );
 };

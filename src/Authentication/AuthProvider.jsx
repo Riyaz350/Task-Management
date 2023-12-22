@@ -37,7 +37,6 @@ const AuthProvider = ({children}) => {
             const loggedUser = {email: userEmail}
             setUser(currentUser)
             const userInfo = {email:currentUser.email, name:currentUser.displayName, photo:currentUser.photoURL,  role:'user'}
-            console.log(userInfo)
             axiosPublic.post('/users', userInfo )
             .then()
             .catch(err=> console.log(err))

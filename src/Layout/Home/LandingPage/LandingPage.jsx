@@ -5,7 +5,7 @@ const LandingPage = () => {
     return (
         <div>
             <Banner></Banner>
-            <Users></Users>
+            {/* <Users></Users> */}
         </div>
     );
 };

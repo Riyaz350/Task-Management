@@ -3,9 +3,13 @@ import Sidebar from "./Sidebar/Sidebar";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="lg:flex p-0 m-0 max-w-full">
+            
             <Sidebar></Sidebar>
+            
+            
             <Outlet></Outlet>
+            
         </div>
     );
 };

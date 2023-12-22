@@ -13,6 +13,10 @@ import SignIn from './Authentication/SignIn.jsx';
 import Register from './Authentication/Register.jsx';
 import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 import LandingPage from './Layout/Home/LandingPage/LandingPage.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import TasksBoard from './Layout/Dashboard/Tasks/ManageTasks/TasksBoard.jsx';
+const queryClient = new QueryClient()
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,14 +44,18 @@ const router = createBrowserRouter([
         path: "createTask",
         element: <PrivateRoutes><CreateTask></CreateTask></PrivateRoutes>
       },
+      // {
+      //   path: "tasksBoard",
+      //   element: <PrivateRoutes><TasksBoard></TasksBoard></PrivateRoutes>
+      // },
     ],
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <AuthProvider>
+    <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
+    </QueryClientProvider>
     </AuthProvider>
-  </React.StrictMode>,
 )
