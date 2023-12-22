@@ -3,6 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
 import styled from "styled-components";
 import useTasks from "../../../../Hooks/useTasks";
+import Title from "../../../../Hooks/Title";
 
 export default function TaskBoard() {
   const [completed, setCompleted] = useState([]);
@@ -59,9 +60,9 @@ export default function TaskBoard() {
 
   return (
     <DragDropContext   onDragEnd={handleDragEnd}>
-      <h2 style={{ textAlign: "center" }}>PROGRESS BOARD</h2>
+      <Title title='Manage Your Tasks'></Title>
 
-      <div className="flex p-0 items-center  justify-center flex-col lg:flex-row "
+      <div className="flex p-0 mt-10 items-center  justify-center flex-col lg:flex-row "
       >
         <Column className='text-white text-3xl' title={"TO DO"} tasks={incomplete} id={"1"} />
         <Column title={"Processing"} tasks={processing} id={"4"} />

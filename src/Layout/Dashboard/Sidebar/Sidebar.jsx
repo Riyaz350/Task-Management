@@ -40,7 +40,7 @@ const Sidebar = () => {
     <ul className="menu p-4 lg:w-80 gap-5  bg-[#001524] py-5 min-h-full w-1/2 text-[#ffecd1] text-xl lg:text-3xl">
       {/* Sidebar content here */}
       <img src={user?.photoURL} className="w-1/2 rounded-lg" alt="" />
-      <h1>{user.displayName}</h1>
+      <h1>{user?.displayName}</h1>
       <Link className="flex items-center gap-2" to='/'> <FaHome />Home</Link>
       <Link className="flex items-center gap-2" to='/dashboard/createTask' > <IoCreate />Manage Tasks</Link>
       {/* <Link className="flex items-center gap-2" to='/dashboard/tasksBoard' > <IoCreate />Tasks Board</Link> */}
